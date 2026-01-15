@@ -31,15 +31,19 @@ public class ObradaAkcija {
         String ime = null;
         String prezime = null;
         String email = null;
+        boolean jedinstveniEmail = false;
 
         dodajPolaznikaLoop:
         while(true) {
 
-            System.out.printf(" 1. Unesite ime polaznika: %s\r\n", ((ime == null) ? "NEDEFINIRAN" : ime));
-            System.out.printf(" 2. Definiraj prezime polaznika: %s\r\n", ((prezime == null) ? "NEDEFINIRANA" : prezime));
-            System.out.printf(" 3. Definiraj e-mail polaznika: %s\r\n", ((email == null) ? "NEDEFINIRANA" : email));
+            System.out.printf(" 1. Unesite ime polaznika: %s\r\n", ((ime == null) ? "NEDEFINIRANO" : ime));
+            System.out.printf(" 2. Unesite prezime polaznika: %s\r\n", ((prezime == null) ? "NEDEFINIRANO" : prezime));
+            System.out.printf(" 3. Unesite e-mail polaznika: %s\r\n", ((email == null) ? "NEDEFINIRAN" : email));
+            if(!jedinstveniEmail && email != null) {
+                System.out.println("Polaznik sa unesenom E-mail adresom je vec evidentiran!");
+            }
             System.out.println(" 4. Odustani");
-            if(ime != null && prezime != null && email != null) {
+            if(ime != null && prezime != null && email != null && jedinstveniEmail) {
                 System.out.println(" 5. Dodaj polaznika");
             }
 
@@ -55,15 +59,21 @@ public class ObradaAkcija {
                     break;
                 case 3:
                     email = unosEmail();
+                    jedinstveniEmail = lista.validacijaEmaila(email);
                     break;
                 case 4:
                     break dodajPolaznikaLoop;
                 case 5:
-                    if(ime != null && prezime != null && email != null) {
+                    if(ime != null && prezime != null && email != null && jedinstveniEmail) {
                         lista.dodajPolaznika(ime, prezime, email);
-                        System.out.println("Polaznik uspjesno dodan u evidenciju!");
+                        //System.out.println("Polaznik uspjesno dodan u evidenciju!");
                     } else {
-                        System.out.println("Neuspjesno dodavanje novog polaznika! Niste unesli sve potrebne podatke!");
+                        if (!(ime != null && prezime != null && email != null)) {
+                            System.out.println("Neuspjesno dodavanje novog polaznika! Niste unesli sve potrebne podatke!");
+                        }
+                        if (!jedinstveniEmail) {
+                            System.out.println("Neuspjesno dodavanje novog polaznika! Polaznik sa unesenom E-mail adresom je vec evidentiran!");
+                        }
                         break;
                     }
                     break dodajPolaznikaLoop;
@@ -82,7 +92,7 @@ public class ObradaAkcija {
             try {
                 String unos = br.readLine().trim();
                 if (unos.isEmpty()) {
-
+                    //String
                     throw new NeispravniPodaciException("Ime je obavezan podatak:");
                 }
                 if (!unos.matches("^[A-ZĆČĐŠŽa-zćčđšž\\s\\-]{2,}")) {
@@ -135,15 +145,16 @@ public class ObradaAkcija {
             System.out.println("Evidencijska lista polaznika je prazna!");
             return;
         }
-        System.out.println(lista.ispisTablicePolaznika());
+        lista.ispisTablicePolaznika();
     }
 
     public static void pretrazivanjePolaznika(EvidencijskaLista lista) {
-        System.out.println("Unesite e-mail polaznika:");
+        //System.out.println("Unesite e-mail polaznika:");
         String email = unosEmail();
 
         lista.pronadjiPolaznika(email);
 
     }
+
 
 }

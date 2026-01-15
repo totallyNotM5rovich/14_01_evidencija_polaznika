@@ -9,6 +9,21 @@
 //        Omogući pretraživanje polaznika po e-mail adresi.
 //        Za rješavanje koristite klasu ArrayList
 
+//15.1.2026
+//
+//        Napiši program za evidenciju polaznika na tečaju koji također provjerava i sprječava dodavanje duplikata polaznika na tečaj. Program treba omogućiti unos polaznika i njihovih podataka te provjeriti jesu li polaznici jedinstveni na tečaju.
+//
+//        Koristi klasu Polaznik s atributima: ime, prezime i e-mail ✔
+//        Koristi klasu HashSet<Polaznik> za pohranu polaznika kako bi se osigurala jedinstvenost ✔
+//        Napravi glavnu klasu EvidencijaPolaznika koja sadrži main metodu ✔
+//        Omogući korisniku unos novih polaznika (ime, prezime, e-mail) ✔
+//        Pri dodavanju novog polaznika, provjeri je li polaznik već prisutan na tečaju (usporedba po e-mail adresi) ✔
+//        Ispisuj odgovarajuće poruke o uspješnom ili neuspješnom dodavanju polaznika na tečaj ✔
+//        Omogući ispis svih polaznika na tečaju nakon unosa ✔
+//
+//        Što bi trebalo izmijeniti u rješenju ako dodamo novi zahtjev?
+//        Svi polaznici moraju biti cijelo vrijeme sortirani po prezimenu uzlazno
+
 import java.io.IOException;
 import java.util.ArrayList;
 

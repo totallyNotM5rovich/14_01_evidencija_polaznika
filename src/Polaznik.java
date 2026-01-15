@@ -1,4 +1,4 @@
-public class Polaznik {
+public class Polaznik implements Comparable<Polaznik> {
     private String ime;
     private String prezime;
     private String email;
@@ -28,5 +28,15 @@ public class Polaznik {
     @Override
     public String toString() {
         return "Ime: " + ime + ", prezime: " + prezime + ", email: " + email;
+    }
+
+    @Override
+    public int compareTo(Polaznik o) {
+        return this.getPrezime().compareTo(o.getPrezime());
+    }
+
+    @Override
+    public int hashCode() {
+        return email.hashCode();
     }
 }
