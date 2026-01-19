@@ -7,7 +7,7 @@ public class Main {
         /**
          * Potrebno prilagoditi vrijednost varijable implementacija za odabir zeljene implementazije (liste, skupovi ili mape).
          */
-        ImplementacijaEnum implementacija = ImplementacijaEnum.MAP;
+        ImplementacijaEnum implementacija = ImplementacijaEnum.LIST;
 
 
         EvidencijskaLista lista = null;
@@ -34,7 +34,7 @@ public class Main {
             for (String akcija : akcije) {
                 System.out.println(akcija);
             }
-            System.out.println("Odaberite jednu od ponudjenih akcija (1-4):");
+            System.out.println("Odaberite jednu od ponudjenih akcija (1-5):");
             int akcija = ObradaAkcija.odabirAkcije(5);
 
             switch (akcija) {
