@@ -204,12 +204,12 @@ public class ObradaAkcija {
         return email;
     }
 
-    public static void ispisEvidentiranihPolaznika(EvidencijskaLista lista) {
+    public static void ispisEvidentiranihPolaznika(EvidencijskaLista lista, SmjerSortiranjaEnum smjer) {
         if(lista.getSize() == 0) {
             System.out.println("Evidencijska lista polaznika je prazna!");
             return;
         }
-        System.out.println(lista.ispisTablicePolaznika());
+        System.out.println(lista.ispisTablicePolaznika(smjer));
     }
 
     public static void pretrazivanjePolaznika(EvidencijskaLista lista) {
@@ -218,6 +218,33 @@ public class ObradaAkcija {
 
         lista.pronadjiPolaznika(email);
 
+    }
+
+    public static SmjerSortiranjaEnum prilagodbaSortiranja(SmjerSortiranjaEnum smjer) {
+        prilagodbaSortiranjaLoop:
+        while(true) {
+            System.out.println("Odaberite smjer sortiranja polaznika u ispisu (odabirom pridruzenog rednog broja):");
+            System.out.println("Trenutno postavljno: " + smjer.getOpis());
+            System.out.println(" 1. Uzlazno");
+            System.out.println(" 2. Silazno");
+            System.out.println(" 3. Nasumicno");
+            System.out.println(" 4. Odustani");
+
+            int smjerSortiranja = odabirAkcije(4);
+
+            switch (smjerSortiranja) {
+                case 1:
+                    return SmjerSortiranjaEnum.ASC;
+                case 2:
+                    return SmjerSortiranjaEnum.DESC;
+                case 3:
+                    return SmjerSortiranjaEnum.SHUFFLE;
+                case 4:
+                    break prilagodbaSortiranjaLoop;
+                default:
+            }
+        }
+        return SmjerSortiranjaEnum.ASC;
     }
 
 //    private static boolean validirajJedinstvenostPolaznika(EvidencijskaLista lista, String ime, String prezime, String email) {

@@ -93,8 +93,16 @@ public class EvidencijskaListaSet extends EvidencijskaLista{
     }
 
     @Override
-    public String ispisTablicePolaznika() {
-        Polaznik[] polazniciLista = polaznici.toArray(new Polaznik[0]);
+    public String ispisTablicePolaznika(SmjerSortiranjaEnum smjer) {
+        //Polaznik[] polazniciLista = polaznici.toArray(new Polaznik[0]);
+        List<Polaznik> polazniciLista = new ArrayList<>(polaznici);
+
+        if(smjer == SmjerSortiranjaEnum.DESC) {
+            Collections.reverse(polazniciLista);
+        }
+        if(smjer == SmjerSortiranjaEnum.SHUFFLE) {
+            Collections.shuffle(polazniciLista);
+        }
 
         int najduziRedniBroj = Integer.toString(polaznici.size()).length();
         int najduzeIme = 3;
@@ -170,21 +178,21 @@ public class EvidencijskaListaSet extends EvidencijskaLista{
         }
         tablica.append("\r\n");
 
-        for (int i = 0; i < polazniciLista.length; i++) {
+        for (int i = 0; i < polazniciLista.size(); i++) {
             String redniBroj = String.format(" %d.", (i+1));
             tablica.append(redniBroj);
             for (int j = redniBroj.length(); j<najduziRedniBroj + 3; j++) {
                 tablica.append(' ');
             }
-            tablica.append(okomitaLinija + " " + polazniciLista[i].getIme());
-            for (int j = polazniciLista[i].getIme().length(); j<najduzeIme + 1; j++) {
+            tablica.append(okomitaLinija + " " + polazniciLista.get(i).getIme());
+            for (int j = polazniciLista.get(i).getIme().length(); j<najduzeIme + 1; j++) {
                 tablica.append(' ');
             }
-            tablica.append(okomitaLinija + " " + polazniciLista[i].getPrezime());
-            for (int j = polazniciLista[i].getPrezime().length(); j<najduzePrezime + 1; j++) {
+            tablica.append(okomitaLinija + " " + polazniciLista.get(i).getPrezime());
+            for (int j = polazniciLista.get(i).getPrezime().length(); j<najduzePrezime + 1; j++) {
                 tablica.append(' ');
             }
-            tablica.append(okomitaLinija + " " + polazniciLista[i].getEmail() + "\r\n");
+            tablica.append(okomitaLinija + " " + polazniciLista.get(i).getEmail() + "\r\n");
         }
         return tablica.toString();
     }

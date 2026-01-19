@@ -76,7 +76,14 @@ public class EvidencijskaListaList extends EvidencijskaLista {
     }
 
 
-    public String ispisTablicePolaznika() {
+    @Override
+    public String ispisTablicePolaznika(SmjerSortiranjaEnum smjer) {
+        if(smjer == SmjerSortiranjaEnum.DESC) {
+            Collections.reverse(polaznici);
+        }
+        if(smjer == SmjerSortiranjaEnum.SHUFFLE) {
+            Collections.shuffle(polaznici);
+        }
         int najduziRedniBroj = Integer.toString(polaznici.size()).length();
         int najduzeIme = 3;
         int najduzePrezime = 7;

@@ -12,7 +12,7 @@ public abstract class EvidencijskaLista {
 
     public abstract void pronadjiPolaznika(String email);
 
-    public abstract String ispisTablicePolaznika();
+    public abstract String ispisTablicePolaznika(SmjerSortiranjaEnum smjer);
 
     public abstract boolean validacijaEmaila(String ime, String prezime, String email);
 

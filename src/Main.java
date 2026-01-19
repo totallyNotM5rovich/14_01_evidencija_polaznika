@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         /**
-         * Potrebno prilagoditi vrijednost varijable implementacija za odabir zeljene implementazije.
+         * Potrebno prilagoditi vrijednost varijable implementacija za odabir zeljene implementazije (liste, skupovi ili mape).
          */
         ImplementacijaEnum implementacija = ImplementacijaEnum.MAP;
 
@@ -23,7 +23,9 @@ public class Main {
                 break;
         }
 
-        String[] akcije = {" 1. Unesi novog polaznika", " 2. Ispis evidentiranih polaznika", " 3. Pretrazivanje polaznika", " 4. Izlaz"};
+        SmjerSortiranjaEnum smjer = SmjerSortiranjaEnum.ASC;
+
+        String[] akcije = {" 1. Unesi novog polaznika", " 2. Ispis evidentiranih polaznika", " 3. Pretrazivanje polaznika", " 4. Prilagodi smjer sortiranja polaznika", " 5. Izlaz"};
 
         beskonacnaPetlja:
         while (true) {
@@ -33,7 +35,7 @@ public class Main {
                 System.out.println(akcija);
             }
             System.out.println("Odaberite jednu od ponudjenih akcija (1-4):");
-            int akcija = ObradaAkcija.odabirAkcije(4);
+            int akcija = ObradaAkcija.odabirAkcije(5);
 
             switch (akcija) {
                 case 1:
@@ -47,12 +49,15 @@ public class Main {
                     }
                     break;
                 case 2:
-                    ObradaAkcija.ispisEvidentiranihPolaznika(lista);
+                    ObradaAkcija.ispisEvidentiranihPolaznika(lista, smjer);
                     break;
                 case 3:
                     ObradaAkcija.pretrazivanjePolaznika(lista);
                     break;
                 case 4:
+                    smjer = ObradaAkcija.prilagodbaSortiranja(smjer);
+                    break;
+                case 5:
                     break beskonacnaPetlja;
                 default:
             }
